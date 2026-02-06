@@ -8,8 +8,7 @@ group = 'com.example'
 repositories {
     mavenCentral()
     maven { url "https://maven.fabricmc.net/" }
-    // Cleanest Maven link for Meteor without DNS issues
-    maven { url "https://maven.meteorclient.com/repository/maven-public/" }
+    // Using JitPack exclusively to bypass Meteor Maven's connection issues
     maven { url "https://jitpack.io" }
 }
 
@@ -18,8 +17,10 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Using the direct library reference that Meteor developers use
-    modImplementation "meteor-client:meteor-client:${project.meteor_version}"
+    // CORRECT JITPACK SYNTAX: Using the direct GitHub project reference
+    modImplementation ("com.github.MeteorDevelopment:meteor-client:${project.meteor_version}") {
+        exclude group: 'net.fabricmc.fabric-api'
+    }
 }
 
 java {
