@@ -8,6 +8,10 @@ group = 'com.example'
 repositories {
     mavenCentral()
     maven { url "https://maven.fabricmc.net/" }
+    // Official Meteor Maven - No Authentication Required
+    maven { 
+        url "https://maven.meteorclient.com/repository/maven-public/" 
+    }
     maven { url "https://jitpack.io" }
 }
 
@@ -16,10 +20,8 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Using JitPack to ensure the library is found without authentication errors
-    modImplementation ("com.github.MeteorDevelopment:meteor-client:${project.meteor_version}") {
-        exclude group: 'net.fabricmc.fabric-api'
-    }
+    // Use this specific format to resolve the dependency correctly
+    modImplementation "com.github.MeteorDevelopment:meteor-client:${project.meteor_version}"
 }
 
 java {
