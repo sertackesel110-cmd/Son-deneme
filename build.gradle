@@ -8,10 +8,7 @@ group = 'com.example'
 repositories {
     mavenCentral()
     maven { url "https://maven.fabricmc.net/" }
-    // Official Meteor Maven - No Authentication Required
-    maven { 
-        url "https://maven.meteorclient.com/repository/maven-public/" 
-    }
+    // Using JitPack exclusively to bypass the DNS/401 issues on Meteor's Maven
     maven { url "https://jitpack.io" }
 }
 
@@ -20,8 +17,10 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Use this specific format to resolve the dependency correctly
-    modImplementation "com.github.MeteorDevelopment:meteor-client:${project.meteor_version}"
+    // JitPack version of Meteor Client
+    modImplementation ("com.github.MeteorDevelopment:meteor-client:${project.meteor_version}") {
+        exclude group: 'net.fabricmc.fabric-api'
+    }
 }
 
 java {
