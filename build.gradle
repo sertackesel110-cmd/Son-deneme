@@ -8,7 +8,7 @@ group = 'com.example'
 repositories {
     mavenCentral()
     maven { url "https://maven.fabricmc.net/" }
-    // Using JitPack exclusively to bypass the DNS/401 issues on Meteor's Maven
+    // Cleanest way to access Meteor's assets
     maven { url "https://jitpack.io" }
 }
 
@@ -17,10 +17,8 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // JitPack version of Meteor Client
-    modImplementation ("com.github.MeteorDevelopment:meteor-client:${project.meteor_version}") {
-        exclude group: 'net.fabricmc.fabric-api'
-    }
+    // CORRECT JITPACK SYNTAX FOR METEOR
+    modImplementation "com.github.MeteorDevelopment.meteor-client:meteor-client:${project.meteor_version}"
 }
 
 java {
