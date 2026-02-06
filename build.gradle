@@ -8,7 +8,10 @@ group = 'com.example'
 repositories {
     mavenCentral()
     maven { url "https://maven.fabricmc.net/" }
-    maven { url "https://maven.pkg.github.com/MeteorDevelopment/meteor-client" }
+    maven {
+        url "https://maven.meteorclient.com/repository/maven-public/"
+        metadataSources { mavenPom(); artifact() }
+    }
     maven { url "https://jitpack.io" }
 }
 
@@ -17,8 +20,8 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Meteor Client kütüphanesi
-    modImplementation "com.github.MeteorDevelopment:meteor-client:${project.meteor_version}"
+    // Correct dependency for Meteor Client 0.6.1
+    modImplementation "meteor-client:meteor-client:${project.meteor_version}"
 }
 
 java {
@@ -37,4 +40,3 @@ processResources {
         expand "version": project.version
     }
 }
-
