@@ -8,7 +8,8 @@ group = 'com.example'
 repositories {
     mavenCentral()
     maven { url "https://maven.fabricmc.net/" }
-    // Using JitPack with a specific pattern to ensure discovery
+    // Clean and direct Maven for Meteor
+    maven { url "https://maven.meteorclient.com/repository/maven-public/" }
     maven { url "https://jitpack.io" }
 }
 
@@ -17,10 +18,9 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // The most stable way to pull Meteor Client via JitPack
-    modImplementation ("com.github.MeteorDevelopment:meteor-client:${project.meteor_version}") {
-        exclude group: 'net.fabricmc.fabric-api'
-    }
+    // CORRECT DEPENDENCY FORMAT
+    // This avoids the 'Name or service not known' error by using the direct Maven path
+    modImplementation "com.github.MeteorDevelopment:meteor-client:${project.meteor_version}"
 }
 
 java {
