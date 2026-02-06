@@ -16,7 +16,7 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Using JitPack for Meteor Client to avoid 401 Unauthorized errors
+    // Using JitPack to ensure the library is found without authentication errors
     modImplementation ("com.github.MeteorDevelopment:meteor-client:${project.meteor_version}") {
         exclude group: 'net.fabricmc.fabric-api'
     }
