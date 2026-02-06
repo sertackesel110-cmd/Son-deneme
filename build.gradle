@@ -8,7 +8,7 @@ group = 'com.example'
 repositories {
     mavenCentral()
     maven { url "https://maven.fabricmc.net/" }
-    // Cleanest way to access Meteor's assets
+    // Using JitPack with a specific pattern to ensure discovery
     maven { url "https://jitpack.io" }
 }
 
@@ -17,8 +17,10 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // CORRECT JITPACK SYNTAX FOR METEOR
-    modImplementation "com.github.MeteorDevelopment.meteor-client:meteor-client:${project.meteor_version}"
+    // The most stable way to pull Meteor Client via JitPack
+    modImplementation ("com.github.MeteorDevelopment:meteor-client:${project.meteor_version}") {
+        exclude group: 'net.fabricmc.fabric-api'
+    }
 }
 
 java {
