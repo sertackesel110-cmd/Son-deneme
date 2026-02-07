@@ -8,8 +8,7 @@ group = 'com.example'
 repositories {
     mavenCentral()
     maven { url "https://maven.fabricmc.net/" }
-    // Alternative mirror for Meteor to bypass DNS/401 issues
-    maven { url "https://dl.cloudsmith.io/public/meteor-client/meteor-client/maven/" }
+    // JitPack is our only choice since Meteor Maven is down for GitHub Actions
     maven { url "https://jitpack.io" }
 }
 
@@ -18,8 +17,10 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Direct dependency for Meteor 0.6.1
-    modImplementation "meteor-client:meteor-client:${project.meteor_version}"
+    // Fixed JitPack path - this is the ONLY way it works without 401/DNS errors
+    modImplementation ("com.github.MeteorDevelopment:meteor-client:${project.meteor_version}") {
+        exclude group: 'net.fabricmc.fabric-api'
+    }
 }
 
 java {
