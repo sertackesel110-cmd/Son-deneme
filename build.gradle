@@ -8,7 +8,7 @@ group = 'com.example'
 repositories {
     mavenCentral()
     maven { url "https://maven.fabricmc.net/" }
-    // JitPack is our only choice since Meteor Maven is down for GitHub Actions
+    // Alternative mirror that works when official maven is down
     maven { url "https://jitpack.io" }
 }
 
@@ -17,7 +17,7 @@ dependencies {
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
 
-    // Fixed JitPack path - this is the ONLY way it works without 401/DNS errors
+    // Pulling directly from JitPack using the absolute path
     modImplementation ("com.github.MeteorDevelopment:meteor-client:${project.meteor_version}") {
         exclude group: 'net.fabricmc.fabric-api'
     }
