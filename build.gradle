@@ -9,8 +9,6 @@ group = project.maven_group
 repositories {
     mavenCentral()
     maven { url "https://maven.fabricmc.net/" }
-    
-    // Using JitPack as the primary source for Meteor since official maven is down
     maven { url "https://jitpack.io" }
 }
 
@@ -18,9 +16,7 @@ dependencies {
     minecraft "com.mojang:minecraft:${project.minecraft_version}"
     mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
-
-    // METEOR CLIENT DEPENDENCY FIX
-    // We use 'transitive = false' to prevent JitPack from failing on sub-dependencies
+    
     modImplementation ("com.github.MeteorDevelopment:meteor-client:${project.meteor_version}") {
         exclude group: "net.fabricmc.fabric-api"
         transitive = false
